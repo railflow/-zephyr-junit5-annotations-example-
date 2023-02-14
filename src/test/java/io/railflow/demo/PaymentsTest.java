@@ -2,6 +2,7 @@ package io.railflow.demo;
 
 import java.util.Arrays;
 
+import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
 import io.railflow.zephyr.annotations.junit.CurrentTest;
@@ -37,5 +38,23 @@ public class PaymentsTest {
 	@Test
 	public void notification_message_is_correct() {
 		Utils.runTest();
+	}
+
+	@Nested
+	public class MyNestedTests {
+		@Test
+		public void nested_test_one() {
+		}
+
+		@Test
+		public void nested_test_two() {
+		}
+
+		@Nested
+		public class NestedNestedTests {
+			@Test
+			public void nested_nested_test_one() {
+			}
+		}
 	}
 }

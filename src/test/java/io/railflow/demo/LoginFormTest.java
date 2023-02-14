@@ -1,19 +1,22 @@
 package io.railflow.demo;
 
-import org.junit.jupiter.api.Disabled;
-import org.junit.jupiter.api.Test;
-
 import io.railflow.zephyr.annotations.CustomField;
 import io.railflow.zephyr.annotations.Railflow;
+import org.junit.jupiter.api.Disabled;
+import org.junit.jupiter.api.Test;
 
 /**
  * @author Sergey Oplavin
  */
-@Railflow(name = "name from class", labels = { "testOne", "testTwo" }, priority = "High", smartFailureAssignment = { "user1@company.io",
-		"user2@company.io" }, caseFields = { @CustomField(name = "field 1", value = "value 1"),
-				@CustomField(name = "field 2", value = "value 2") }, executionFields = { @CustomField(name = "exec field 1", value = "exec value 1"),
-						@CustomField(name = "exec field 2", value = "exec value 2") }, stepFields = {
-								@CustomField(name = "step field 1", value = "step value 1"), @CustomField(name = "step field 2", value = "step value 2") })
+@Railflow(name = "Railflow on the class level", labels = { "testOne", "testTwo" }, priority = "High", smartFailureAssignment = {
+		"user01@yourcompany.com",
+		"user02@yourcompany.com" }, caseFields = { @CustomField(name = "Text field", value = "Value from the class"),
+		@CustomField(name = "Multiline field", value = "class value") },
+		executionFields = {
+				@CustomField(name = "exec field", value = "zephyr.bool(true)"),
+				@CustomField(name = "Date", value = "2023-01-15") },
+		stepFields = {
+				@CustomField(name = "Step Count", value = "zephyr.int(3)"), @CustomField(name = "Succeeded", value = "zephyr.bool(true)") })
 public class LoginFormTest {
 
 	@Test
@@ -21,13 +24,11 @@ public class LoginFormTest {
 		Utils.runTest();
 	}
 
-	@Railflow(name = "name from method", labels = { "testThree", "testFour" }, priority = "Low", smartFailureAssignment = "user3@company.io", caseFields = {
-			@CustomField(name = "method field 1", value = "method value 1"),
-			@CustomField(name = "method field 2", value = "method value 2") }, executionFields = {
-					@CustomField(name = "method exec field 1", value = "method exec value 1"),
-					@CustomField(name = "method exec field 2", value = "method exec value 2") }, stepFields = {
-							@CustomField(name = "method step field 1", value = "method step value 1"),
-							@CustomField(name = "method step field 2", value = "method step value 2") })
+	@Railflow(name = "Railflow on the method", labels = { "testThree", "testFour" }, priority = "Low",
+			caseFields = { @CustomField(name = "Text field", value = "Value from the report - method"),
+					@CustomField(name = "Multiline field", value = "method value") },
+			executionFields = { @CustomField(name = "exec field", value = "zephyr.bool(true)"), @CustomField(name = "Date", value = "2023-02-15") },
+			stepFields = { @CustomField(name = "Step Count", value = "zephyr.int(4)"), @CustomField(name = "Succeeded", value = "zephyr.bool(true)") })
 	@Test
 	public void login_error_incorrect_username() {
 		Utils.runTest();
